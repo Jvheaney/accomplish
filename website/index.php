@@ -7,6 +7,6 @@ $SESSION_HASH = createSession();
 //And now we will render our html.
 include("./index.html");
 
-//We inject a script tag to the end of the page to insert out session hash.
+//We inject a script tag to the end of the page to insert our session hash.
 echo "<script>window.token='$SESSION_HASH';</script>"
 ?>
