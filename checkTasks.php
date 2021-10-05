@@ -2,7 +2,7 @@
 //This file _MUST_ be left out of public web directories.
 
 //We must reference the exact location of the files so that they can be found in a cronjob execution.
-$DIR="/usr/home/admin/accomplish/";
+$DIR="";
 
 include $DIR . 'local_arguments.php'; //This file contains our connection DSN. Keep it our of public web directories.
 include $DIR . 'local_utilities.php'; //This file contains helpful functions and models. Keep it out of public web directories.
