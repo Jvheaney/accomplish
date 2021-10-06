@@ -9,7 +9,7 @@ A simple todo list app made for one person. Made in PHP, React-Native-Web, React
 
 
 ## Why
-I've been coding for 15 years as of October 2021 but I mysteriously never made a todo list app, which seems to be everyone's first project. It also feels like a rite of passage, and I needed something to remind me to do Leetcode everyday (gosh darn tech interviews).
+I've been coding for 15 years as of October 2021 but I mysteriously never made a todo list app, which seems to be everyone's first project. It also feels like a rite of passage, and I needed something to remind me to do Leetcode everyday (gosh darn tech interviews). I decided to bang it out one night, and in the spirit of Hacktoberfest, I decided to open source it.
 
 ## How it works
 It's pretty simple, I have a PHP script called `setupDatabases.php` that connects to your default database (likely postgres) in your database server using PDO and builds out the two tables and two sequences required for accomplish. Edit the files to include your database server details, and then run that via command line to get all the tables setup.
