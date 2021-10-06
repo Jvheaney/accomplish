@@ -1,4 +1,4 @@
-const API_URL = "https://kilostudios.com/accomplish/endpoints/";
+const API_URL = ""; //Add your endpoint URL here without the php scripts
 
 //Networking
 export const apiCall = async function(endpoint, data){
