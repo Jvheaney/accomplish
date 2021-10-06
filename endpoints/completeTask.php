@@ -5,9 +5,8 @@ include '../local_utilities.php'; //This file contains helpful functions and mod
 //Here we will set our content-header.
 header('Content-Type: application/json');
 
-
 //We will get our POST variables.
-$taskId = $_POST['task_id'];
+$taskId = $_POST['taskId'];
 $SESSION_HASH = $_POST['token'];
 
 
@@ -23,7 +22,7 @@ if (!isUserSessionValid($SESSION_HASH)) {
 
 
 //Now we will create our prepared statement for inserting our new completed task into the database.
-$task_complete_prepare = pg_prepare($con, 'task_complete', 'INSERT INTO completed_tasks (task_id, completion_time) VALUES ($1, now())');
+$task_complete_prepare = pg_prepare($con, 'task_complete', "INSERT INTO completed_tasks (task_id, completion_time) VALUES ($1, date_trunc('day',now()))");
 
 //Now we will execute our prepared statement.
 $task_complete_execute = pg_execute($con, 'task_complete', array($taskId));

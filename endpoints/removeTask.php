@@ -5,9 +5,8 @@ include '../local_utilities.php'; //This file contains helpful functions and mod
 //Here we will set our content-header.
 header('Content-Type: application/json');
 
-
 //We will get our POST variables.
-$taskId = $_POST['task_id'];
+$taskId = $_POST['taskId'];
 $SESSION_HASH = $_POST['token'];
 
 
