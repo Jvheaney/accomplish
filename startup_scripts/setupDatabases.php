@@ -39,14 +39,14 @@ try {
 				$tasksTableCreate_sql = "CREATE TABLE IF NOT EXISTS tasks (task_id serial PRIMARY KEY, task_name varchar(256) NOT NULL)";
 				//This creates the table that stores our task completions.
 				$taskCompletionTableCreate_sql = "CREATE TABLE IF NOT EXISTS completed_tasks (completion_id serial PRIMARY KEY, task_id int NOT NULL, completion_time timestamptz NOT NULL)";
-				//This creates a unique index for the task_id and day of completion on completed_tasks.
-				$uniqueIndexCreate_sql = "CREATE UNIQUE INDEX task_and_day ON completed_tasks(task_id, date_trunc('day',completion_time AT TIME ZONE 'EST'));";
+				//This creates a unique constrain for the task_id and day of completion on completed_tasks.
+				$uniqueConstrainCreate_sql = "ALTER TABLE completed_tasks ADD CONSTRAINT task_and_day UNIQUE(task_id, completion_time)";
 
 
 				//Now we will execute our above SQL statements.
 				$con_accomplish->exec($tasksTableCreate_sql);
 				$con_accomplish->exec($taskCompletionTableCreate_sql);
-				$con_accomplish->exec($uniqueIndexCreate_sql);
+				$con_accomplish->exec($uniqueConstrainCreate_sql);
 
 				//Our tables are created now, now we need to grant privileges to these tables for our non-superuser.
 				$grantTablePrivileges_sql = "GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE tasks, completed_tasks TO $DB_NON_SU_USER";
