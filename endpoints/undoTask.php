@@ -7,6 +7,7 @@ header('Content-Type: application/json');
 
 
 //We will get our POST variables.
+$taskId = $_POST['taskId'];
 $SESSION_HASH = $_POST['token'];
 
 
@@ -21,20 +22,18 @@ if (!isUserSessionValid($SESSION_HASH)) {
 }
 
 
-//Now we will create our prepared statement for selecting our tasks from the database.
-$tasks_fetch_prepare = pg_prepare($con, 'tasks_fetch', "SELECT t.task_name, t.task_id, EXISTS(SELECT c.task_id FROM completed_tasks c WHERE c.task_id = t.task_id AND c.completion_time = date_trunc('day', now())) as completed FROM tasks t;");
+//Now we will create our prepared statement for inserting our new task into the database.
+$task_undo_prepare = pg_prepare($con, 'task_undo', "DELETE FROM completed_tasks WHERE task_id=$1 AND completion_time = date_trunc('day',now())");
 
 //Now we will execute our prepared statement.
-$tasks_fetch_execute = pg_execute($con, 'tasks_fetch', array());
+$task_undo_execute = pg_execute($con, 'task_undo', array($taskId));
 
-//Now we will get our rows from our executed statement.
-$tasks_fetch = pg_fetch_all($tasks_fetch_execute);
 
-//Now we will return them to the client.
 $response = new ReturnModel();
+$response->setData("Success.");
 $response->setSuccess(true);
-$response->setData($tasks_fetch);
 echo json_encode($response);
-
 exit();
+
+
 ?>
