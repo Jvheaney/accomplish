@@ -1,24 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+import { View } from "react-native"
+import TodoList from './scenes/TodoList';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <View style={{height: '100%', width: '100%', backgroundColor: "#80C904"}}>
+      <TodoList></TodoList>
+    </View>
   );
 }
 
