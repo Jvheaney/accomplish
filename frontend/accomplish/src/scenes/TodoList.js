@@ -66,6 +66,9 @@ class TodoList extends Component {
 
   addTask = () => {
     var tasks_copy = this.state.tasks;
+    if(tasks_copy[tasks_copy.length-1].editingTask == true){
+      return;
+    }
     tasks_copy.push({task_id: -1, completed: false, editingTask: true, task_name: ""});
     this.setState({
       tasks: tasks_copy
@@ -100,6 +103,17 @@ class TodoList extends Component {
     })
   }
 
+  finishEditing = () => {
+    var tasks_copy = this.state.tasks;
+    if(tasks_copy[tasks_copy.length-1].editingTask == true){
+      tasks_copy.pop();
+      this.setState({
+        tasks: tasks_copy
+      })
+    }
+    this.setState({isEditing: !this.state.isEditing});
+  }
+
   render() {
     console.disableYellowBox = true;
 
@@ -112,7 +126,7 @@ class TodoList extends Component {
                 <Title></Title>
                 <ToggleEditingButton
                   isEditing={this.state.isEditing}
-                  toggleEditing={() => this.setState({isEditing: !this.state.isEditing})}
+                  toggleEditing={() => this.finishEditing()}
                   ></ToggleEditingButton>
                 <View style={{width: 'auto'}}>
                   {this.renderTasks()}
