@@ -4,12 +4,11 @@ include '../local_utilities.php'; //This file contains helpful functions and mod
 //Now we will call our session creation function.
 $SESSION_HASH = createSession();
 
-//We inject a script tag to the end of the page to insert out session hash.
+//We inject a script tag to the start of the page to insert out session hash.
 echo "<script>window.token='$SESSION_HASH';</script>";
 
 //And now we will render our html.
 include("./index.html");
-
 
 ?>
 
